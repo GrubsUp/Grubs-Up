@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "Grubs-Up",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,11 +7,12 @@
   },
   "dependencies": {
     "express": "~3.4.8",
-    "static-favicon": "~1.0.0",
+    "serve-favicon": "~2.3.0",
     "morgan": "~1.0.0",
     "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
-    "jade": "~1.3.0"
+    "jade": "~1.3.0",
+    "mongodb": "~2.0.52"
   }
 }
