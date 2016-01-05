@@ -8,8 +8,6 @@
 + Create recipes
 + Generate shopping lists based on your planned meals
 
-
-
 ---
 
 ### Created By Adam Crowe
