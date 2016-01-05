@@ -1,4 +1,10 @@
-/* GET home page. */
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};
+var express = require('express');
+var router = express.Router();
+
+router.all("*",function (req, res){
+	console.log("\nReceived GET request on " + req.originalUrl);
+
+	res.render("layout", {});
+});
+
+module.exports = router;
