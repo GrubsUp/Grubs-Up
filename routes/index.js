@@ -4,7 +4,7 @@ var router = express.Router();
 router.all("*",function (req, res){
 	console.log("\nReceived GET request on " + req.originalUrl);
 
-	res.render("layout", {});
+	res.render("partials/index", {});
 });
 
 module.exports = router;

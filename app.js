@@ -35,7 +35,7 @@ app.use(function(err, req, res, next) {
         message: err.message,
         status: err.status
     });
-}
+});
 
 console.log("\nListening on port 3000");
 app.listen(3000);
