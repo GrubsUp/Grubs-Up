@@ -1,23 +1,24 @@
 console.log("\nRunning app.js");
 
 console.log("\nRequiring modules");
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express = require("express");
+var http = require("http");
+var path = require("path");
+var favicon = require("serve-favicon");
+var logger = require("morgan");
+var cookieParser = require("cookie-parser");
+var bodyParser = require("body-parser");
 
 console.log("Requiring routes");
-var routes = require('./routes');
+var routes = require("./routes");
+var partials = require("./routes/partials");
 
 console.log("\nInitialising app");
 var app = express();
 
 console.log("Configuring app");
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
 
 console.log("\nDeclaring module middleware");
 app.use(logger("dev"));
@@ -27,11 +28,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "/public")));
 
 console.log("Declaring route middleware");
-app.get('*', routes);
+app.use("/partials", partials)
+
+app.use("*", routes);
 
 console.log("\nDefining error handlers");
 app.use(function(err, req, res, next) {
-    res.render('error', {
+    res.render("error", {
         message: err.message,
         status: err.status
     });
