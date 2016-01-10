@@ -1,5 +1,6 @@
 angular.module("grubsup", [
-  "ngRoute"
+  "ngRoute",
+  "grubsup.controllers"
 ]).config([
   "$routeProvider",
   "$locationProvider",
@@ -8,9 +9,7 @@ angular.module("grubsup", [
       "/",
       {
         templateUrl:"/partials/index",
-        controller: function(){
-          
-        }
+        controller: "IndexCtrl"
       }
     );
 
