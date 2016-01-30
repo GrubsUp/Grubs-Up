@@ -16,3 +16,5 @@ angular.module("grubsup", [
     $locationProvider.html5Mode(true);
   }
 ]);
+
+angular.module("grubsup.controllers", []);
