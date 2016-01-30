@@ -1,10 +1,11 @@
 var express = require("express");
 var router = express.Router();
+var path = require("path");
 
 router.all("/:file",function (req, res){
 	console.log("\nReceived GET request on " + req.originalUrl);
 
-	res.render("partials/" + req.params.file, {});
+	res.sendFile(path.join(__dirname + "/../views/partials/" + req.params.file + ".html"));
 });
 
 module.exports = router;

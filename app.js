@@ -18,7 +18,6 @@ var app = express();
 
 console.log("Configuring app");
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
 
 console.log("\nDeclaring module middleware");
 app.use(logger("dev"));
@@ -34,10 +33,13 @@ app.use("*", routes);
 
 console.log("\nDefining error handlers");
 app.use(function(err, req, res, next) {
-    res.render("error", {
-        message: err.message,
-        status: err.status
-    });
+    res.status(err.status || 500);
+    console.log(err.message);
+    res.sendFile(path.join(__dirname + "/views/error.html"));
+});
+
+app.use(function(err, req, res, next) {
+
 });
 
 console.log("\nListening on port 3000");
