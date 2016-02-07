@@ -1,1 +1,302 @@
-<h1>{{title}}</h1>
+<!-- Contains both navs -->
+<div class="nav-container" id="top">
+  <!-- first nav (permantly visible) -->
+  <nav class="navbar navbar-full">
+    <!-- menu icon - onclick = show 2nd nav -->
+    <button class="pull-left navbar-toggler navbar-menu-bg" data-toggle="collapse" data-target=".nav-extended">
+      <img src="images/menu.png" alt="Menu Icon" width="30"/>
+    </button>
+    <!-- center logo -->
+    <div class="navbar-logo-bg">
+      <img src="images/logo.png" alt="Grub's Up" width="50"/>
+    </div>
+
+  </nav>
+  <!-- extended nav container - collapsable -->
+  <div class="collapse nav-extended">
+    <!-- bootstrap class that adds padding -->
+    <div class="p-a-1">
+      <!-- second nav element -->
+      <nav class="navbar navbar-full navbar-dark bg-inverse">
+        <a class="navbar-brand hidden-xs-down" href="#">Grub's Up</a>
+        <ul class="nav navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link top" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Log In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/help">Help</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- contains main page -->
+<div class="container-fluid">
+  <!-- image bg -->
+  <div class="row image-overlay">
+    <div class="darken-img">
+      <br><br>
+      <!-- contains overlayed content -->
+      <div class="container">
+        <!-- overlayed text - displayed on xs, sm + md -->
+        <div class="row hidden-lg-up">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <!-- large heading text - displayed on sm + md -->
+            <h1 class="display-3 text-xs-center hidden-xs-down">
+              Grub's Up
+            </h1>
+            <!-- smaller heading text - displayed on xs -->
+            <h1 class="display-4 text-xs-center hidden-sm-up">
+              Grub's Up
+            </h1>
+            <!-- large sub-heading text - displayed on sm + md -->
+            <h3 class="text-xs-center hidden-xs-down">
+              Meals, made simple.
+              <br><br>
+            </h3>
+            <!-- smaller sub-heading text - displayed on xs -->
+            <p class="lead text-xs-center hidden-sm-up">
+              Meals, made simple.
+            </p>
+            <br>
+          </div>
+        </div>
+        <!-- overlayed heading text - displayed on lg + xl -->
+        <div class="row hidden-md-down">
+          <div class="col-xl-12 col-lg-12">
+            <h1 class="display-3">
+              Meals, made simple.
+            </h1>
+          </div>
+        </div>
+        <!-- overlayed desc text + signup/login - displayed on lg + xl -->
+        <div class="row hidden-md-down">
+          <!-- overlayed desc text - half of container -->
+          <div class="col-xl-6 col-lg-6">
+            <p class="lead">
+              Grub's Up takes the hassle out of meals.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id volutpat lacus. Integer rhoncus, diam vitae facilisis fringilla, ligula tortor pellentesque nibh, id efficitur justo tortor vitae massa. Nullam vel ultrices lorem, quis auctor tortor. Vivamus in felis nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis convallis tellus dolor, sit amet vulputate est suscipit et. Nulla facilisi. Sed ac pharetra massa. Nulla elit dolor, auctor id vulputate a, ullamcorper at leo. Morbi pretium posuere nunc, aliquet euismod lectus ornare eget. Mauris vel molestie quam. Cras ut tempor neque. Nullam bibendum bibendum mi, sed gravida arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            </p>
+            <br><br><br><br><br><br>
+          </div>
+          <!-- signup/login - 4 wide - offset by 2 -->
+          <div class="col-xl-4 col-xl-offset-2 col-lg-4 col-lg-offset-2">
+            <!-- tabs -->
+            <ul class="nav nav-tabs nav-tabs-transparent" role="tablist" id="login-signup-tabs">
+              <!-- login tab -->
+              <li class="nav-item">
+                <a class="nav-link login-tab active"role="tab">
+                  &nbsp;&nbsp;
+                  Log In
+                  &nbsp;&nbsp;
+                </a>
+              </li>
+              <!-- signup tab -->
+              <li class="nav-item">
+                <a class="nav-link signup-tab" id="" role="tab">
+                  &nbsp;&nbsp;
+                  Sign Up
+                  &nbsp;&nbsp;
+                </a>
+              </li>
+            </ul>
+            <br><br>
+            <!-- panes -->
+            <div class="tab-content">
+              <!-- login pane -->
+              <div class="tab-pane active login-tab" role="tabpanel">
+                <h3 class="center-block text-xs-center">
+                  Log In
+                </h3>
+                <br>
+                <form>
+                  <fieldset class="form-group">
+                    <input class="form-control" type="text" name="email" placeholder="Email or Username">
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                  </fieldset>
+                  <button type="submit" class="btn btn-block btn-primary">Log In</button>
+                </form>
+              </div>
+              <!-- signup pane -->
+              <div class="tab-pane signup-tab" role="tabpanel">
+                <h3 class="center-block text-xs-center">
+                  Sign Up
+                </h3>
+                <br>
+                <form>
+                  <fieldset class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="Email">
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <input class="form-control" type="text" name="username" placeholder="Username">
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                  </fieldset>
+                  <button type="submit" class="btn btn-block btn-primary">Sign Up</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- login/signup - visible md, sm + xs -->
+  <div class="row login-signup-mobile hidden-lg-up">
+    <a class="pull-left">Log In</a>
+    <a class="pull-right">Sign Up</a>
+  </div>
+  <!-- light grey block -->
+  <div class="row block block-light-grey">
+    <!-- block content - 6 wide xl + lg w/ offset 3 - 8 wide md w/ offset 2 - 10 wide sm w/ offset 1 - 12 wide xs -->
+    <div class="col-xl-6 col-xl-offset-3 col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+      <!-- visible xs -->
+      <p class="lead font-bold hidden-sm-up">
+        Your meals. Whenever, Wherever
+      </p>
+      <!-- visible xl, lg, md + sm -->
+      <h3 class="font-bold hidden-xs-down">
+        Your meals. Whenever, Wherever
+      </h3>
+      <p class="text-justify">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id volutpat lacus. Integer rhoncus, diam vitae facilisis fringilla, ligula tortor pellentesque nibh, id efficitur justo tortor vitae massa. Nullam vel ultrices lorem, quis auctor tortor. Vivamus in felis nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis convallis tellus dolor, sit amet vulputate est suscipit et. Nulla facilisi. Sed ac pharetra massa. Nulla elit dolor, auctor id vulputate a, ullamcorper at leo. Morbi pretium posuere nunc, aliquet euismod lectus ornare eget. Mauris vel molestie quam. Cras ut tempor neque. Nullam bibendum bibendum mi, sed gravida arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      </p>
+      <br>
+      <img src="images/devices.png"/>
+    </div>
+  </div>
+  <!-- white block -->
+  <div class="row block block-white">
+    <!-- block header - 6 wide xl + lg w/ offset 3 - 8 wide md w/ offset 2 - 10 wide sm w/ offset 1 - 12 wide xs -->
+    <div class="col-xl-6 col-xl-offset-3 col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+      <!-- visible xs -->
+      <p class="lead font-bold hidden-sm-up">
+        Straight Forward Shopping
+      </p>
+      <!-- visible xl, lg, md + sm -->
+      <h3 class="font-bold hidden-xs-down">
+        Straight Forward Shopping
+      </h3>
+    </div>
+    <br><br><br><br>
+    <!-- block cards - 2 wide xl - 4 wide lg + md - 12 wide sm + xs -->
+
+    <!-- block card #1 - offset 3 xl, lg + md -->
+    <div class="col-xl-2 col-xl-offset-3 col-lg-4 col-md-4 col-sm-12 col-xs-12 text-xs-center">
+      <h1 class="font-bold">
+        <span class="glyphicon glyphicon-shopping-cart"></span>
+      </h1>
+      <p class="lead">
+        Tailored Shopping Lists
+      </p>
+      <p class="text-justify">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta interdum nibh, at luctus mauris. Suspendisse eget elementum ex, nec feugiat sapien. Cras at porta purus. Mauris pellentesque, nisl nec.
+      </p>
+      <br>
+    </div>
+    <!-- block card #2 -->
+    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <h1 class="font-bold">
+        <span class="glyphicon glyphicon-usd"></span>
+      </h1>
+      <p class="lead">
+        Save Money
+      </p>
+      <p class="text-justify">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta interdum nibh, at luctus mauris. Suspendisse eget elementum ex, nec feugiat sapien. Cras at porta purus. Mauris pellentesque, nisl nec.
+      </p>
+      <br>
+    </div>
+    <!-- block card #3 -->
+    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <h1 class="font-bold">
+        <span class="glyphicon glyphicon-grain"></span>
+      </h1>
+      <p class="lead">
+        Get Nutritional Info
+      </p>
+      <p class="text-justify">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta interdum nibh, at luctus mauris. Suspendisse eget elementum ex, nec feugiat sapien. Cras at porta purus. Mauris pellentesque, nisl nec.
+      </p>
+      <br>
+    </div>
+  </div>
+  <!-- grey block -->
+  <div class="row block block-grey">
+    <!-- block content - 5 wide xl + lg w/ offset 1 - 6 wide md - 12 wide sm + xs -->
+    <div class="col-xl-5 col-xl-offset-1 col-lg-5 col-lg-offset-1 col-md-6 col-sm-12 col-xs-12">
+      <!-- visible xs -->
+      <p class="lead font-bold hidden-sm-up">
+        Reviews
+      </p>
+      <!-- visible xl, lg, md + sm -->
+      <h3 class="font-bold text-xs-left hidden-xs-down">
+        Reviews
+      </h3>
+      <p class="text-justify">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id volutpat lacus. Integer rhoncus, diam vitae facilisis fringilla, ligula tortor pellentesque nibh, id efficitur justo tortor vitae massa. Nullam vel ultrices lorem, quis auctor tortor. Vivamus in felis nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis convallis tellus dolor, sit amet vulputate est suscipit et. Nulla facilisi. Sed ac pharetra massa. Nulla elit dolor, auctor id vulputate a, ullamcorper at leo. Morbi pretium posuere nunc, aliquet euismod lectus ornare eget. Mauris vel molestie quam. Cras ut tempor neque. Nullam bibendum bibendum mi, sed gravida arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      </p>
+      <br>
+    </div>
+    <!-- 4 wide xl + lg w/ offset 1 - 6 wide md - 12 wide sm -->
+    <div class="col-xl-4 col-xl-offset-1 col-lg-4 col-lg-offset-1 col-md-6 col-sm-12 col-xs-12">
+      <br class="hidden-sm-down">
+      <br class="hidden-sm-down">
+      <div class="card card-inverse card-info text-xs-center">
+        <div class="card-block">
+          <blockquote class="card-blockquote">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+      <div class="card card-inverse card-info text-xs-center">
+        <div class="card-block">
+          <blockquote class="card-blockquote">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+      <button class="btn btn-link pull-right" style="color: #FFFFFF;">More &rarr;</button>
+    </div>
+  </div>
+  <!-- orange block -->
+  <div class="row block block-orange">
+      <a href="/signup">Sign Up Now For Free!</a>
+  </div>
+  <!-- footer -->
+  <div class="row footer">
+    <!-- 12 wide xl, lg, md, sm + xs -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h3>Grub's Up</h3>
+      <br>
+      <a class="top" href="/">Home <span class="sr-only">(current)</span></a>
+      <a href="/login">Log In</a>
+      <a href="/signup">Sign Up</a>
+      <a href="/about">About</a>
+      <a href="/terms">Terms</a>
+      <a href="privacy">Privacy</a>
+      <a href="/cookiepolicy">Cookies</a>
+      <a href="/advertise">Advertise</a>
+      <a href="/blog">Blog</a>
+      <a href="/contaact">Contact</a>
+      <a href="/help">Help</a>
+      <br>
+      <br>
+      <a class="text-muted top" href="#">Back To Top</a>
+    </div>
+  </div>
+</div>
