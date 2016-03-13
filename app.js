@@ -12,6 +12,9 @@ var bodyParser = require("body-parser");
 console.log("Requiring routes");
 var routes = require("./routes");
 var partials = require("./routes/partials");
+var auth = {
+  signup: require("./routes/auth/signup")
+};
 
 console.log("\nInitialising app");
 var app = express();
@@ -27,7 +30,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "/public")));
 
 console.log("Declaring route middleware");
-app.use("/partials", partials)
+app.use("/partials", partials);
+
+app.use("/auth/signup", auth.signup);
 
 app.use("*", routes);
 
@@ -36,10 +41,6 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     console.log(err.message);
     res.sendFile(path.join(__dirname + "/views/error.html"));
-});
-
-app.use(function(err, req, res, next) {
-
 });
 
 console.log("\nListening on port 3000");

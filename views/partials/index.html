@@ -134,7 +134,7 @@
                   Sign Up
                 </h3>
                 <br>
-                <form>
+                <form action="/auth/signup" method="POST">
                   <fieldset class="form-group">
                     <input class="form-control" type="email" name="email" placeholder="Email">
                   </fieldset>
@@ -143,6 +143,9 @@
                   </fieldset>
                   <fieldset class="form-group">
                     <input class="form-control" type="password" name="password" placeholder="Password">
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <input class="form-control" type="confirm" name="password" placeholder="Confirm Password">
                   </fieldset>
                   <button type="submit" class="btn btn-block btn-primary">Sign Up</button>
                 </form>
@@ -284,8 +287,6 @@
       <h3>Grub's Up</h3>
       <br>
       <a class="top" href="/">Home <span class="sr-only">(current)</span></a>
-      <a href="/login">Log In</a>
-      <a href="/signup">Sign Up</a>
       <a href="/about">About</a>
       <a href="/terms">Terms</a>
       <a href="privacy">Privacy</a>

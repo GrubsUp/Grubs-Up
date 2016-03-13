@@ -1,6 +1,7 @@
 angular.module("grubsup", [
   "ngRoute",
-  "grubsup.controllers"
+  "grubsup.controllers",
+  "grubsup.services"
 ]).config([
   "$routeProvider",
   "$locationProvider",
@@ -11,10 +12,20 @@ angular.module("grubsup", [
         templateUrl:"/partials/index",
         controller: "IndexCtrl"
       }
+    ).when(
+      "/signup",
+      {
+        templateUrl:"/partials/signup",
+        controller: "SignUpCtrl"
+      }
     );
 
     $locationProvider.html5Mode(true);
   }
 ]);
 
-angular.module("grubsup.controllers", []);
+angular.module("grubsup.controllers", [
+  "grubsup.services"
+]);
+
+angular.module("grubsup.services", []);
