@@ -13,6 +13,7 @@ console.log("Requiring routes");
 var routes = require("./routes");
 var partials = require("./routes/partials");
 var auth = {
+  authenticate: require("./routes/auth/authenticate"),
   signup: require("./routes/auth/signup")
 };
 
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 console.log("Declaring route middleware");
 app.use("/partials", partials);
 
+app.use("/auth/authenticate", auth.authenticate);
 app.use("/auth/signup", auth.signup);
 
 app.use("*", routes);

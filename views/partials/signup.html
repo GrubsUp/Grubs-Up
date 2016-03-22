@@ -9,6 +9,8 @@
           <input type="email" name="email" ng-model="form.email" class="form-control" required>
           <small ng-show="emailError" class="text-danger">
             {{emailError}}
+            <br ng-show="emailTaken">
+            <a href="/help/takenEmail?email={{form.email}}" class="text-danger font-weight-bold" ng-show="emailTaken">This email shouldn't be in use</a>
           </small>
         </fieldset>
         <fieldset class="form-group">

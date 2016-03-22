@@ -18,6 +18,12 @@ angular.module("grubsup", [
         templateUrl:"/partials/signup",
         controller: "SignUpCtrl"
       }
+    ).when(
+      "/login",
+      {
+        templateUrl:"/partials/login",
+        controller: "LogInCtrl"
+      }
     );
 
     $locationProvider.html5Mode(true);

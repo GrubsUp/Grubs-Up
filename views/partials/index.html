@@ -118,13 +118,21 @@
                   Log In
                 </h3>
                 <br>
-                <form>
+                <form action="/auth/authenticate" method="POST">
                   <fieldset class="form-group">
-                    <input class="form-control" type="text" name="email" placeholder="Email or Username">
+                    <input class="form-control" type="text" name="username" placeholder="Username" required>
                   </fieldset>
                   <fieldset class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
                   </fieldset>
+                  <a href="/help/forgotpassword" style="color:#FFFFFF;">Forgot your password?</a>
+                  <br>
+                  <br>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="stayLoggedIn" ng-checked="{{form.stayLoggedIn}}"> Stay logged in for the next 30 days
+                    </label>
+                  </div>
                   <button type="submit" class="btn btn-block btn-primary">Log In</button>
                 </form>
               </div>
@@ -136,16 +144,16 @@
                 <br>
                 <form action="/auth/signup" method="POST">
                   <fieldset class="form-group">
-                    <input class="form-control" type="email" name="email" placeholder="Email">
+                    <input class="form-control" type="email" name="email" placeholder="Email" required>
                   </fieldset>
                   <fieldset class="form-group">
-                    <input class="form-control" type="text" name="username" placeholder="Username">
+                    <input class="form-control" type="text" name="username" placeholder="Username" required>
                   </fieldset>
                   <fieldset class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
                   </fieldset>
                   <fieldset class="form-group">
-                    <input class="form-control" type="confirm" name="password" placeholder="Confirm Password">
+                    <input class="form-control" type="password" name="confirm" placeholder="Confirm Password" required>
                   </fieldset>
                   <button type="submit" class="btn btn-block btn-primary">Sign Up</button>
                 </form>
@@ -158,8 +166,8 @@
   </div>
   <!-- login/signup - visible md, sm + xs -->
   <div class="row login-signup-mobile hidden-lg-up">
-    <a class="pull-left">Log In</a>
-    <a class="pull-right">Sign Up</a>
+    <a class="pull-left" href="/login">Log In</a>
+    <a class="pull-right" href="/signup">Sign Up</a>
   </div>
   <!-- light grey block -->
   <div class="row block block-light-grey">
@@ -197,7 +205,7 @@
     <!-- block cards - 2 wide xl - 4 wide lg + md - 12 wide sm + xs -->
 
     <!-- block card #1 - offset 3 xl, lg + md -->
-    <div class="col-xl-2 col-xl-offset-3 col-lg-4 col-md-4 col-sm-12 col-xs-12 text-xs-center">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 text-xs-center">
       <h1 class="font-bold">
         <span class="glyphicon glyphicon-shopping-cart"></span>
       </h1>
@@ -210,7 +218,7 @@
       <br>
     </div>
     <!-- block card #2 -->
-    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
       <h1 class="font-bold">
         <span class="glyphicon glyphicon-usd"></span>
       </h1>
@@ -223,7 +231,7 @@
       <br>
     </div>
     <!-- block card #3 -->
-    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
       <h1 class="font-bold">
         <span class="glyphicon glyphicon-grain"></span>
       </h1>

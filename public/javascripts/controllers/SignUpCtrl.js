@@ -11,7 +11,7 @@ angular.module("grubsup.controllers").
         $scope.form.email = queryString.prevEmail || "";
         $scope.form.username = queryString.prevUsername || "";
       }
-      if(queryString.error == "invU"){
+      if(queryString.error == "takenE"){
         $("[name=username]").addClass("form-control-danger").parent().addClass("has-danger");
         $scope.usernameError = "Usernames can only contain letters, numbers, underscores and periods.";
       }
@@ -27,9 +27,10 @@ angular.module("grubsup.controllers").
         $("[name=username]").addClass("form-control-danger").parent().addClass("has-danger");
         $scope.usernameError = "Username is taken. Please try another one.";
       }
-      if(queryString.error == "takenE"){
+      if(queryString.error == "invU"){
         $("[name=email]").addClass("form-control-danger").parent().addClass("has-danger");
         $scope.emailError = "Email is taken. Please try another one.";
+        $scope.emailTaken = true;
       }
     }
   ]);

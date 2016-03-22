@@ -65,32 +65,31 @@ router.post("/",function (req, res){
 			email: form.email,
 			recipes: [],
 			shoppingList: []
-		}).then(function (saveResults) {
-			return db.update(db.models.user, {_id: saveResults._id}, {$set: {id: "0" + saveResults._id}}).then(function (updateResults) {
-				return "0" + saveResults._id;
-			});
-		}).then(function (id){
+		}).then(function (saveResults){
 			var salt = crypto.randomBytes(64).toString("base64");
 			return db.save(db.models.password, {
-				id: id,
+				userId: saveResults._id,
 				salt: salt
 			}).then(function (saveResults) {
 				return saveResults;
 			});
 		}).then(function (saveResults){
 			var encryptedPassword = crypto.pbkdf2Sync(form.password, saveResults.salt, 2500, 256, 'sha256').toString("base64");
-			return db.update(db.models.password, {id: saveResults.id}, {$set: {password: encryptedPassword}}).then(function (updateResults) {
-				return encryptedPassword;
+			return db.update(db.models.password, {userId: saveResults.userId}, {$set: {password: encryptedPassword}}).then(function (updateResults) {
+				return {
+					encryptedPassword: encryptedPassword,
+					userId: saveResults.userId
+				};
 			});
-		}).then(function (encryptedPassword) {
+		}).then(function (updateResults) {
 			var token = jwt.sign({
-				name: form.username,
-				password: encryptedPassword
+				userId: updateResults.userId
+				password: updateResults.encryptedPassword
 			}, require("./../../config").secret, {
         expiresIn: 86400
       });
 
-			res.cookie("access-token", token);
+			res.cookie("access-token", token, {httpOnly: true});
 			res.redirect("/accountsetup");
 		});
 	});

@@ -18,6 +18,12 @@ angular.module("grubsup", [
         templateUrl:"/partials/signup",
         controller: "SignUpCtrl"
       }
+    ).when(
+      "/login",
+      {
+        templateUrl:"/partials/login",
+        controller: "LogInCtrl"
+      }
     );
 
     $locationProvider.html5Mode(true);
@@ -55,6 +61,33 @@ angular.module("grubsup.controllers").
     }
   ]);
 
+angular.module("grubsup.controllers").
+  controller("LogInCtrl", [
+    "$scope",
+    "$location",
+    "$window",
+    function ($scope, $location, api) {
+      $scope.form = {};
+
+      var queryString = $location.search();
+      if(queryString.error){
+        $scope.form.username = queryString.prevUsername || "";
+        $scope.form.stayLoggedIn = queryString.stayLoggedIn || false;
+      }
+      if(queryString.error == "invU"){
+        $("[name=username]").addClass("form-control-danger").parent().addClass("has-danger");
+        $scope.usernameError = "Usernames can only contain letters, numbers, underscores and periods.";
+      }
+      if(queryString.error == "noUFound"){
+        $("[name=username]").addClass("form-control-danger").parent().addClass("has-danger");
+        $scope.usernameError = "Username does not exist.";
+      }
+      if(queryString.error == "invCombo"){
+        $("[name=password]").addClass("form-control-danger").parent().addClass("has-danger");
+        $scope.passwordError = "Username and password fields do not match.";
+      }
+    }
+  ]);
 
 angular.module("grubsup.controllers").
   controller("SignUpCtrl", [
@@ -69,7 +102,7 @@ angular.module("grubsup.controllers").
         $scope.form.email = queryString.prevEmail || "";
         $scope.form.username = queryString.prevUsername || "";
       }
-      if(queryString.error == "invU"){
+      if(queryString.error == "takenE"){
         $("[name=username]").addClass("form-control-danger").parent().addClass("has-danger");
         $scope.usernameError = "Usernames can only contain letters, numbers, underscores and periods.";
       }
@@ -85,9 +118,10 @@ angular.module("grubsup.controllers").
         $("[name=username]").addClass("form-control-danger").parent().addClass("has-danger");
         $scope.usernameError = "Username is taken. Please try another one.";
       }
-      if(queryString.error == "takenE"){
+      if(queryString.error == "invU"){
         $("[name=email]").addClass("form-control-danger").parent().addClass("has-danger");
         $scope.emailError = "Email is taken. Please try another one.";
+        $scope.emailTaken = true;
       }
     }
   ]);
