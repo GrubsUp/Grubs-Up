@@ -3,7 +3,16 @@ angular.module("grubsup.controllers").
     "$scope",
     "$location",
     "$window",
-    function ($scope, $location, $window) {
+    "api",
+    function ($scope, $location, $window, api) {
+      api.getUserInfo(
+        function (user){
+          if(!user.notLoggedIn && user.valid != false){
+            $location.url("/overview");
+          }
+        }, false
+      );
+
       $("#login-signup-tabs .nav-item .nav-link").on("mouseup", function () {
         if($(this).hasClass("signup-tab")){
           $(".signup-tab").addClass("active");

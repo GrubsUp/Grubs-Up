@@ -10,7 +10,7 @@ angular.module("grubsup", [
       "/",
       {
         templateUrl:"/partials/index",
-        controller: "IndexCtrl"
+        controller: "IndexCtrl",
       }
     ).when(
       "/signup",
@@ -24,14 +24,46 @@ angular.module("grubsup", [
         templateUrl:"/partials/login",
         controller: "LogInCtrl"
       }
+    ).when(
+      "/confirmemail/:token",
+      {
+        templateUrl:"/partials/confirmemail",
+        controller: "ConfirmEmailCtrl"
+      }
+    ).when(
+      "/accountsetup",
+      {
+        templateUrl:"/partials/accountsetup",
+        controller: "AccountSetupCtrl"
+      }
+    ).when(
+      "/overview",
+      {
+        templateUrl:"/partials/overview",
+        controller: "OverviewCtrl"
+      }
+    ).when(
+      "/recipes",
+      {
+        templateUrl:"/partials/recipesMain",
+        controller: "RecipesMainCtrl"
+      }
     );
 
     $locationProvider.html5Mode(true);
   }
 ]);
 
-angular.module("grubsup.controllers", [
-  "grubsup.services"
+angular.module("grubsup.services", [
+  "ngCookies"
 ]);
 
-angular.module("grubsup.services", []);
+angular.module("grubsup.filters", []);
+
+angular.module("grubsup.directives", []);
+
+angular.module("grubsup.controllers", [
+  "grubsup.services",
+  "grubsup.filters",
+  "grubsup.directives"
+]);

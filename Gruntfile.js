@@ -5,10 +5,11 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'public/javascripts/*.js',
-          "public/javascripts/controllers/*.js",
+          'public/javascripts/routes/*.js',
+          "public/javascripts/services/*.js",
           "public/javascripts/filters/*.js",
           "public/javascripts/directives/*.js",
-          "public/javascripts/services/*.js"
+          "public/javascripts/controllers/*.js"
         ],
         dest: 'public/javascripts/build/production.js',
       }
@@ -23,14 +24,15 @@ module.exports = function(grunt) {
       scripts: {
         files: [
           'public/javascripts/*.js',
-          "public/javascripts/controllers/*.js",
+          'public/javascripts/routes/*.js',
+          "public/javascripts/services/*.js",
           "public/javascripts/filters/*.js",
           "public/javascripts/directives/*.js",
-          "public/javascripts/services/*.js"
+          "public/javascripts/controllers/*.js"
         ],
         tasks: [
-          'concat',
-          // 'uglify'
+          'concat'
+          // ,'uglify'
         ],
         options: {
           spawn: false,

@@ -1,0 +1,76 @@
+<!-- Contains both navs -->
+<style media="screen">
+  .navbar{
+    background: #333333;
+    padding: 8px;
+  }
+
+  .brand-name-container{
+    height: 50px;
+    width: 175px;
+    font-size: 1.25rem;
+    line-height: 50px;
+    vertical-align: middle;
+    padding-left: 8px;
+    color: #EEEEEE;
+  }
+
+  .brand-name-container:hover,
+  .brand-name-container:focus
+  {
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .navbar-logo-bg{
+    background: #FF8F00;
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+  }
+
+  .navbar-menu-bg{
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+  }
+
+  .nav-extended{
+    background: #333333;
+  }
+</style>
+<div class="nav-container" id="top">
+  <!-- first nav (permantly visible) -->
+  <nav class="navbar navbar-full navbar-dark bg-inverse">
+    <!-- menu icon - onclick = show 2nd nav -->
+    <button class="pull-left navbar-toggler navbar-menu-bg" data-toggle="collapse" data-target=".nav-extended" ng-show="menu">
+      <img src="images/menu.png" alt="Menu Icon" width="30"/>
+    </button>
+    <!-- brand name -->
+    <a class="brand-name-container pull-left hidden-xs-down" href="/">
+      &nbsp;Grub's Up&nbsp;
+    </a>
+    <!-- center logo -->
+    <div class="navbar-logo-bg">
+      <img ng-src="images/logo.png" alt="Grub's Up" width="50"/>
+    </div>
+
+  </nav>
+  <!-- extended nav container - collapsable -->
+  <div class="collapse nav-extended">
+    <!-- bootstrap class that adds padding -->
+    <div class="p-a-1">
+      <!-- second nav element -->
+      <nav class="navbar navbar-full navbar-dark bg-inverse">
+        <ul class="nav navbar-nav">
+          <li class="nav-item" ng-repeat="link in menu.items">
+            <a class="nav-link top" ng-class="{active: link.active}" href="{{link.name | lowercase | removeSpaces}}">{{link.name}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

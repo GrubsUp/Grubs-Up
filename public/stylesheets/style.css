@@ -1,29 +1,9 @@
-.navbar{
-  background: #333333;
-  padding: 8px;
-}
-
-.navbar-logo-bg{
-  background: #FF8F00;
-  width: 50px;
-  height: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 25px;
-}
-
-.navbar-menu-bg{
-  width: 50px;
-  height: 50px;
-  padding: 10px;
-}
-
-.nav-extended, .nav-search{
-  background: #333333;
+html, body {
+	height: 100%;
+	margin: 0;
 }
 
 .image-overlay{
-  background-image: url("../images/spaghetti-bolognese-bg.png");
   background-size: 100% auto;
 }
 
@@ -32,37 +12,8 @@
   color: #FFFFFF;
 }
 
-.nav-tabs-transparent{
-  border-width: 0px;
-  display: table;
-  margin: auto;
-}
-
-.nav-tabs-transparent .nav-item{
-  margin-left: 0px !important;
-}
-
-.nav-tabs-transparent .nav-item .nav-link{
+.darken-img a{
   color: #FFFFFF;
-  border-color: #FFFFFF;
-  border-width: 0px 0px 1px 0px;
-}
-
-.nav-tabs-transparent .nav-item .nav-link.active{
-  background: transparent;
-  border-width: 1px 1px 0px 1px;
-}
-
-.nav-tabs-transparent .nav-item .nav-link:hover,
-.nav-tabs-transparent .nav-item .nav-link:focus{
-  color: #FFA91A;
-}
-
-.nav-tabs-transparent .nav-item .nav-link.active:hover,
-.nav-tabs-transparent .nav-item .nav-link.active:focus{
-  color: #FFFFFF;
-  border-color: #FFFFFF;
-  cursor: default;
 }
 
 .block{
@@ -100,30 +51,8 @@
   text-decoration: underline;
 }
 
-.footer{
-  padding: 40px;
-  background: #EEEEEE;
-  text-align: center;
-}
-
-.footer a:not(.text-muted){
-  color: #373A3C;
-  margin: 0px 10px 0px 10px;
-}
-
-.login-signup-mobile{
-  padding: 0px;
-}
-
-.login-signup-mobile a{
-  background: #000000;
-  width: 50%;
-  color: #FFFFFF;
-  padding: 16px;
-  border-width: 0px;
-  text-align: center;
-}
-
-.login-signup-mobile a:first-child{
-  border-right: 1px solid #FFFFFF;
+.pfp{
+	-webkit-box-shadow: 0px 5px 5px 0px rgba(68,68,68,0.6);
+	-moz-box-shadow: 0px 5px 5px 0px rgba(68,68,68,0.6);
+	box-shadow: 0px 5px 5px 0px rgba(68,68,68,0.6);
 }

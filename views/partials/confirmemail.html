@@ -1,0 +1,39 @@
+<style media="screen">
+  .bg-img{
+    background-image: url('/images/chocolate-tart.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0;
+  }
+
+  .darken-img{
+    height: 100%;
+    padding-top: 100px;
+    color: #444444;
+  }
+</style>
+<div ng-include src="'includes/header'"></div>
+<div class="bg-img">
+  <div class="darken-img">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-6 col-xl-offset-3 col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12" ng-show="user">
+          <div class="card card-block">
+            <h3 class="card-title" ng-show="err">Error!</h3>
+            <p class="card-text" ng-hide="confirmed">{{message}}</p>
+            <button class="btn btn-danger btn-block resendConfirmation" ng-show="err" ng-click="resendConfirmation()">Resend Confirmation</button>
+            <div ng-show="confirmed">
+              <h3 class="card-title">{{message}}</h3>
+              Your current email address is <i>{{user.email}}</i>
+              <a href="/user/settings/email">Change email address</a>
+            </div>
+            <a class="btn btn-success btn-block" href="/overview" ng-show="homeBtn">Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

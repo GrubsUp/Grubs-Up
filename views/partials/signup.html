@@ -1,39 +1,64 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xl-6 col-xl-offset-3 col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-      <br>
-      <h1 class="center-block text-xs-center">Sign Up</h1>
-      <form action="/auth/signup" method="POST">
-        <fieldset class="form-group">
-          <label class="form-control-label">Email</label>
-          <input type="email" name="email" ng-model="form.email" class="form-control" required>
-          <small ng-show="emailError" class="text-danger">
-            {{emailError}}
-            <br ng-show="emailTaken">
-            <a href="/help/takenEmail?email={{form.email}}" class="text-danger font-weight-bold" ng-show="emailTaken">This email shouldn't be in use</a>
-          </small>
-        </fieldset>
-        <fieldset class="form-group">
-          <label class="form-control-label">Username</label>
-          <input type="text" name="username" ng-model="form.username" class="form-control" required>
-          <small ng-show="usernameError" class="text-danger">
-            {{usernameError}}
-          </small>
-        </fieldset>
-        <fieldset class="form-group">
-          <label class="form-control-label">Password</label>
-          <input type="password" name="password" class="form-control" required>
-        </fieldset>
-        <fieldset class="form-group">
-          <label class="form-control-label">Confirm Password</label>
-          <input type="password" name="confirm" class="form-control" required>
-          <small ng-show="passwordError" class="text-danger">
-            {{passwordError}}
-          </small>
-        </fieldset>
-        <br>
-        <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
-      </form>
+<style media="screen">
+  .bg-img{
+    background-image: url('/images/banoffee.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height:100%;
+    width:100%;
+    position:absolute;
+    top:0;
+  }
+
+  .darken-img{
+    height: 100%;
+    padding-top: 100px;
+  }
+</style>
+<div ng-include src="'includes/header'"></div>
+<div class="bg-img">
+  <div class="darken-img">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-6 col-xl-offset-3 col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+          <br>
+          <h1 class="center-block text-xs-center">Sign Up</h1>
+          <form action="/auth/signup" method="POST">
+            <fieldset class="form-group">
+              <label class="form-control-label">Email</label>
+              <input type="email" name="email" ng-model="form.email" class="form-control" required>
+              <small ng-show="emailError" class="text-danger">
+                {{emailError}}
+                <br ng-show="emailTaken">
+                <a href="/help/takenEmail?email={{form.email}}" class="text-danger font-weight-bold" ng-show="emailTaken">This email shouldn't be in use</a>
+              </small>
+            </fieldset>
+            <fieldset class="form-group">
+              <label class="form-control-label">Username</label>
+              <input type="text" name="username" ng-model="form.username" class="form-control" required>
+              <small ng-show="usernameError" class="text-danger">
+                {{usernameError}}
+              </small>
+            </fieldset>
+            <fieldset class="form-group">
+              <label class="form-control-label">Password</label>
+              <input type="password" name="password" class="form-control" required>
+            </fieldset>
+            <fieldset class="form-group">
+              <label class="form-control-label">Confirm Password</label>
+              <input type="password" name="confirm" class="form-control" required>
+              <small ng-show="passwordError" class="text-danger">
+                {{passwordError}}
+              </small>
+            </fieldset>
+            <br>
+            <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+          </form>
+          <br>
+          <a href="login">Already have an account? Login</a>
+          <br>
+          &nbsp;
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -2,8 +2,7 @@ angular.module("grubsup.controllers").
   controller("SignUpCtrl", [
     "$scope",
     "$location",
-    "$window",
-    function ($scope, $location, api) {
+    function ($scope, $location) {
       $scope.form = {};
 
       var queryString = $location.search();

@@ -2,11 +2,17 @@ angular.module("grubsup.controllers").
   controller("LogInCtrl", [
     "$scope",
     "$location",
-    "$window",
-    function ($scope, $location, api) {
-      $scope.form = {};
-
+    function ($scope, $location) {
       var queryString = $location.search();
+
+      $scope.form = {
+        redirectTo: queryString.redirectTo ? queryString.redirectTo : "/overview"
+      };
+
+      if(queryString.tokenExp){
+        $(".tokenExpModal").modal();
+      }
+
       if(queryString.error){
         $scope.form.username = queryString.prevUsername || "";
         $scope.form.stayLoggedIn = queryString.stayLoggedIn || false;

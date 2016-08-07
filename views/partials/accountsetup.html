@@ -1,0 +1,21 @@
+<div ng-include src="'includes/header'"></div>
+<div class="container">
+  <br>
+  <div class="row" ng-show="user">
+    <h2 class="text-xs-center center-block">Welcome {{user.name}}!</h2>
+    <br>
+    <p class="text-xs-center center-block">
+      We've sent a confirmation email to {{user.email}}.
+    </p>
+    <a class="text-xs-center center-block" href="/user/settings/email/change">Change email address</a>
+    <br>
+    <img ng-src="{{user.pfp}}" class="center-block img-circle img-border" image-onload width="100px"/>
+    <br>
+    <h3 class="text-xs-center center-block">Get started by adding a picture of yourself!</h3>
+    <br>
+    <form action="/user/settings/" method="post">
+      <label>Upload a photo</label>
+      <input type="file" class="form-control-file" id="exampleInputFile">
+    </form>
+  </div>
+</div>

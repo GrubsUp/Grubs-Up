@@ -3,7 +3,6 @@ module.exports = {
   user: {
     name: String,
     email: String,
-    id: String,
     recipes: [String],
     shoppingList: [{
       name: String,
@@ -13,11 +12,24 @@ module.exports = {
       reminder: Date
     }],
     pfp: String,
-    registered: Boolean
+    verified: Boolean,
+    confirmedEmail: Boolean
   },
   password: {
-    id: String,
+    userId: String,
     salt: String,
     password: String
+  },
+  recipe: {
+    title: String,
+    author: String,
+    description: String,
+    ingredients: [{
+      name: String,
+      amount: Number,
+      measurement: String
+    }],
+    instructions: [String],
+    coverPhoto: String
   }
 };
