@@ -8,6 +8,7 @@ var Promise = require("bluebird");
 console.log("Defining mongoose models");
 var userModel = mongoose.model("User", schemas.user);
 var passwordModel = mongoose.model("Password", schemas.password);
+var recipeModel = mongoose.model("Recipe", schemas.recipe);
 
 module.exports = {
   query: function (model, query) {
@@ -40,6 +41,7 @@ module.exports = {
   },
   models: {
     user: userModel,
-    password: passwordModel
+    password: passwordModel,
+    recipe: recipeModel
   }
 }

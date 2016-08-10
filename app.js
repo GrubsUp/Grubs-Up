@@ -21,7 +21,8 @@ var api = {
   user: require("./routes/api/user"),
   confirmEmail: require("./routes/api/confirmEmail"),
   resendConfirmation: require("./routes/api/resendConfirmation"),
-  getRecipes: require("./routes/api/getRecipes")
+  getRecipes: require("./routes/api/getRecipes"),
+  createRecipe: require("./routes/api/createRecipe")
 };
 
 console.log("\nInitialising app");
@@ -48,6 +49,7 @@ app.use("/api/user", api.user);
 app.use("/api/confirmEmail", api.confirmEmail);
 app.use("/api/resendConfirmation", api.resendConfirmation);
 app.use("/api/getRecipes", api.getRecipes);
+app.use("/api/createRecipe", api.createRecipe);
 
 app.use("*", routes);
 

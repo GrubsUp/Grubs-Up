@@ -48,6 +48,12 @@ angular.module("grubsup", [
         templateUrl:"/partials/recipesMain",
         controller: "RecipesMainCtrl"
       }
+    ).when(
+      "/recipes/new",
+      {
+        templateUrl:"/partials/recipesNew",
+        controller: "RecipesNewCtrl"
+      }
     );
 
     $locationProvider.html5Mode(true);
