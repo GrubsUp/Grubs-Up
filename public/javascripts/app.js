@@ -54,6 +54,18 @@ angular.module("grubsup", [
         templateUrl:"/partials/recipesNew",
         controller: "RecipesNewCtrl"
       }
+    ).when(
+      "/recipes/view/:recipeId",
+      {
+        templateUrl:"/partials/recipesView",
+        controller: "RecipesViewCtrl"
+      }
+    ).when(
+      "/recipes/edit/:recipeId",
+      {
+        templateUrl:"/partials/recipesNew",
+        controller: "RecipesEditCtrl"
+      }
     );
 
     $locationProvider.html5Mode(true);

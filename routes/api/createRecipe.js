@@ -19,7 +19,9 @@ router.post("/", function (req, res) {
           title: recipe.title,
           description: recipe.description,
           ingredients: recipe.ingredients,
-          instructions: recipe.instructions
+          instructions: recipe.instructions,
+          author: decodedToken.userId,
+          public: true
         }).then(function (saveResults) {
           return saveResults;
         });
@@ -32,8 +34,12 @@ router.post("/", function (req, res) {
           var newRecipes = queryResults[0].recipes || [];
           newRecipes.push(recipeId);
 
+          var newPublicRecipes = queryResults[0].recipesPublic || [];
+          newPublicRecipes.push(recipeId);
+
           db.update(db.models.user, {_id: decodedToken.userId}, {
-            recipes: newRecipes
+            recipes: newRecipes,
+            recipesPublic: newPublicRecipes
           }).then(function (updateResults) {
             res.redirect("/recipes");
           });

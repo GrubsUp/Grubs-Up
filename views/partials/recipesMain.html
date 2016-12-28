@@ -7,6 +7,19 @@
       <a class="btn btn-success pull-right" href="/recipes/new">Create New Recipe</a>
       <br>
       <br>
+      <div class="alert alert-success" role="alert" ng-show="queryString.deleted=='Success'">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        Deleted successfully.
+      </div>
+      <div class="alert alert-danger" role="alert" ng-show="queryString.deleted=='Error'">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        Something went wrong.
+      </div>
+      <br>
       <table class="table table-striped table-hover" ng-show="recipes.length">
         <thead>
           <tr>
@@ -16,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="recipe in recipes | limitTo:recipesShown">
+          <tr ng-repeat="recipe in recipes track by $index | limitTo:recipesShown" ng-click="openRecipe(recipe._id)">
             <td>{{recipe.title}}</td>
             <td class="truncate">{{recipe.description}}</td>
           </tr>

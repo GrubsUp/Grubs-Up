@@ -6,7 +6,7 @@ factory('api', [
   function ($http, $cookies, $location){
     return {
       getUserInfo: function (cb, redirect) {
-        var redirect = redirect || true;
+        var redirect = redirect == false ? redirect : true;
         $http.get("/api/user").then(function (res) {
           if(res.data.valid == false && redirect){
             $location.url("login?tokenExp=1&redirectTo=" +  $location.path());
@@ -14,14 +14,17 @@ factory('api', [
           else if(res.data.notLoggedIn && redirect){
             $location.url("login?&redirectTo=" +  $location.path());
           }
+          else if(res.data.valid == false && !redirect || res.data.notLoggedIn && !redirect){
+            cb("NotLoggedIn");
+          }
           else{
             cb(res.data);
           }
         });
       },
-      getRecipes: function (recipeIds, cb) {
-        if (recipeIds.length > 0) {
-          $http.post("/api/getRecipes", recipeIds).then(function (res) {
+      get: function (getType, getIds, cb) {
+        if (getIds.length > 0) {
+          $http.post("/api/get"+getType, getIds).then(function (res) {
             cb(res.data);
           });
         }

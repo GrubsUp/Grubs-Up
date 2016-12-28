@@ -54,6 +54,18 @@ angular.module("grubsup", [
         templateUrl:"/partials/recipesNew",
         controller: "RecipesNewCtrl"
       }
+    ).when(
+      "/recipes/view/:recipeId",
+      {
+        templateUrl:"/partials/recipesView",
+        controller: "RecipesViewCtrl"
+      }
+    ).when(
+      "/recipes/edit/:recipeId",
+      {
+        templateUrl:"/partials/recipesNew",
+        controller: "RecipesEditCtrl"
+      }
     );
 
     $locationProvider.html5Mode(true);
@@ -82,7 +94,7 @@ factory('api', [
   function ($http, $cookies, $location){
     return {
       getUserInfo: function (cb, redirect) {
-        var redirect = redirect || true;
+        var redirect = redirect == false ? redirect : true;
         $http.get("/api/user").then(function (res) {
           if(res.data.valid == false && redirect){
             $location.url("login?tokenExp=1&redirectTo=" +  $location.path());
@@ -90,14 +102,17 @@ factory('api', [
           else if(res.data.notLoggedIn && redirect){
             $location.url("login?&redirectTo=" +  $location.path());
           }
+          else if(res.data.valid == false && !redirect || res.data.notLoggedIn && !redirect){
+            cb("NotLoggedIn");
+          }
           else{
             cb(res.data);
           }
         });
       },
-      getRecipes: function (recipeIds, cb) {
-        if (recipeIds.length > 0) {
-          $http.post("/api/getRecipes", recipeIds).then(function (res) {
+      get: function (getType, getIds, cb) {
+        if (getIds.length > 0) {
+          $http.post("/api/get"+getType, getIds).then(function (res) {
             cb(res.data);
           });
         }
@@ -213,7 +228,7 @@ angular.module("grubsup.controllers").
     function ($scope, $location, $window, api) {
       api.getUserInfo(
         function (user){
-          if(!user.notLoggedIn && user.valid != false){
+          if(user != "notLoggedIn"){
             $location.url("/overview");
           }
         }, false
@@ -296,10 +311,83 @@ angular.module("grubsup.controllers").
   ]);
 
 angular.module("grubsup.controllers").
+  controller("RecipesEditCtrl", [
+    "$scope",
+    "api",
+    "$routeParams",
+    "$http",
+    "$window",
+    "$location",
+    function ($scope, api, $routeParams, $http, $window, $location) {
+      $scope.form = {
+        ingredients: [{
+          name: "",
+          amount: "",
+          measurement: ""
+        }],
+        instructions: [""]
+      };
+
+      $(".newIngredient").click(function () {
+        $scope.form.ingredients.push({
+          name: "",
+          amount: "",
+          measurement: ""
+        });
+        $scope.$apply();
+      });
+
+      $(".newInstruction").click(function () {
+        $scope.form.instructions.push("");
+        $scope.$apply();
+      });
+
+      $scope.menu = {
+        items: [
+          {name: "Overview"},
+          {name: "Calendar"},
+          {name: "Shopping List"},
+          {name: "Recipes", active: true},
+          {name: "Settings"}
+        ]
+      };
+
+      api.getUserInfo(
+        function (user){
+          $scope.user = user;
+          api.get("Recipes", [$routeParams.recipeId], function (recipe) {
+            if($scope.user["_id"] == recipe[0].author){
+              $scope.form = recipe[0];
+            }
+            else{
+              $window.open("/recipes", "_self");
+            }
+          });
+        }
+      );
+
+      $(".submit").click(function () {
+        $http.post("/api/updateRecipe", {
+          recipe: $scope.form
+        }).then(function (result) {
+          if(result.data.valid == false){
+            $location.url("login?tokenExp=1&redirectTo=" +  $location.path());
+          }
+          else{
+            $window.open("/recipes", "_self");
+          }
+        });
+      });
+    }
+  ]);
+
+angular.module("grubsup.controllers").
   controller("RecipesMainCtrl", [
     "$scope",
     "api",
-    function ($scope, api) {
+    "$window",
+    "$location",
+    function ($scope, api, $window, $location) {
       $scope.menu = {
         items: [
           {name: "Overview"},
@@ -312,22 +400,30 @@ angular.module("grubsup.controllers").
       api.getUserInfo(
         function (user){
           $scope.user = user;
-          api.getRecipes(
-            user.recipes,
+          api.get("Recipes", user.recipes,
             function (recipes) {
               $scope.recipes = recipes;
+              if ($scope.recipesShown >= $scope.recipes.length) {
+                $(".loadMore").hide();
+              }
             }
           );
         }
       );
-      
+
       $scope.recipesShown = 25;
       $scope.loadMore = function () {
         $scope.recipesShown += 25;
-        if(recipesShown >= recipes.length){
+        if($scope.recipesShown >= $scope.recipes.length){
           $(".loadMore").hide();
         }
       }
+
+      $scope.openRecipe = function (recipeId) {
+        $window.open('/recipes/view/' + recipeId, "_self");
+      };
+
+      $scope.queryString = $location.search();
     }
   ]);
 
@@ -335,7 +431,8 @@ angular.module("grubsup.controllers").
   controller("RecipesNewCtrl", [
     "$scope",
     "api",
-    function ($scope, api) {
+    "$http",
+    function ($scope, api, $http) {
       $scope.form = {
         ingredients: [{
           name: "",
@@ -374,6 +471,73 @@ angular.module("grubsup.controllers").
           $scope.user = user;
         }
       );
+
+      $(".submit").click(function () {
+        $http.post("/api/createRecipe", $scope.form).then(function (res) {
+          $window.open("/recipes", "_self");
+        });
+      });
+    }
+  ]);
+
+angular.module("grubsup.controllers").
+  controller("RecipesViewCtrl", [
+    "$scope",
+    "api",
+    "$routeParams",
+    "$http",
+    "$window",
+    "$location",
+    function ($scope, api, $routeParams, $http, $window, $location) {
+      $scope.menu = {
+        items: [
+          {name: "Overview"},
+          {name: "Calendar"},
+          {name: "Shopping List"},
+          {name: "Recipes", active: true},
+          {name: "Settings"}
+        ]
+      };
+      api.getUserInfo(
+        function (result){
+          if (result != "NotLoggedIn") {
+            $scope.user = result;
+          }
+          api.get("Recipes", [$routeParams.recipeId], function (recipe) {
+            $scope.recipe = recipe[0];
+            if (result != "NotLoggedIn") {
+              if($scope.recipe.author == $scope.user._id){
+                $scope.recipe.author = $scope.user.name;
+              }
+              else{
+                api.get("Users", [$scope.recipe.author], function (user) {
+                  $scope.recipe.author = user[0].name;
+                  $(".deleteRecipe, .editRecipe").hide();
+                });
+              }
+            }
+            else{
+              api.get("Users", [$scope.recipe.author], function (user) {
+                $scope.recipe.author = user[0].name;
+                $(".deleteRecipe, .editRecipe").hide();
+              });
+            }
+          });
+        }, false
+      );
+
+      $(".deleteRecipeModal").click(function () {
+        $http.post("/api/deleteRecipe", {
+          recipeId: $scope.recipe._id
+        }).then(function (result) {
+          if(result.data.valid == false){
+            $location.url("login?tokenExp=1&redirectTo=" +  $location.path());
+          }
+          else{
+            $window.open("/recipes?deleted="+result.data.deleteResult, "_self");
+          }
+        });
+      });
     }
   ]);
 

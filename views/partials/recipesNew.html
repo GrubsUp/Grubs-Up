@@ -3,21 +3,24 @@
   <br>
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <a class="btn btn-primary" href="/recipes">Back to Recipes</a>
+      <br>
+      <br>
       <h2>New Recipe</h2>
       <br>
-      <form action="/api/createRecipe" method="POST">
+      <form>
         <fieldset class="form-group">
           <label class="form-control-label">Title</label>
-          <input type="text" class="form-control" name="title" placeholder="Title" ng-model="title" required/>
+          <input type="text" class="form-control" name="title" placeholder="Title" ng-model="form.title" required/>
         </fieldset>
         <fieldset class="form-group">
           <label class="form-control-label">Description</label>
-          <textarea class="form-control" name="description" rows="3" placeholder="Description" ng-model="description"></textarea>
+          <textarea class="form-control" name="description" rows="3" placeholder="Description" ng-model="form.description"></textarea>
         </fieldset>
         <br>
         <h4>Ingredients</h4>
         <br>
-        <fieldset class="form-group" ng-repeat="ingredient in form.ingredients">
+        <fieldset class="form-group" ng-repeat="ingredient in form.ingredients track by $index">
           <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <input type="text" class="form-control" name="ingredientName{{$index+1}}" placeholder="Ingredient Name" ng-model="form.ingredients[$index].name" required/>
@@ -26,12 +29,13 @@
               <input type="number" class="form-control" name="ingredientAmount{{$index+1}}" placeholder="Amount" ng-model="form.ingredients[$index].amount" required/>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-              <input type="text" class="form-control" name="ingredientMeasurement{{$index+1}}" placeholder="Measurement" ng-model="form.ingredients[$index].measurement" required/>
+              <input type="text" class="form-control" name="ingredientMeasurement{{$index+1}}" placeholder="Measurement" ng-model="form.ingredients[$index].measurement"/>
             </div>
           </div>
           <hr>
         </fieldset>
         <button type="button" class="btn btn-primary btn-block newIngredient">New Ingredient</button>
+        <br>
         <br>
         <h4>Instructions</h4>
         <br>
@@ -42,9 +46,9 @@
         </fieldset>
         <button type="button" class="btn btn-primary btn-block newInstruction">New Instruction</button>
         <br>
-        <button class="btn btn-primary btn-block" type="submit">Create</button>
+        <button class="btn btn-primary btn-block submit">Save</button>
       </form>
-      <br>
+      <br></br>
     </div>
   </div>
 </div>

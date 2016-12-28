@@ -4,6 +4,7 @@ module.exports = {
     name: String,
     email: String,
     recipes: [String],
+    recipesPublic: [String],
     shoppingList: [{
       name: String,
       amount: Number,
@@ -30,6 +31,7 @@ module.exports = {
       measurement: String
     }],
     instructions: [String],
-    coverPhoto: String
+    coverPhoto: String,
+    public: Boolean
   }
 };

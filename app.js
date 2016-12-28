@@ -22,7 +22,10 @@ var api = {
   confirmEmail: require("./routes/api/confirmEmail"),
   resendConfirmation: require("./routes/api/resendConfirmation"),
   getRecipes: require("./routes/api/getRecipes"),
-  createRecipe: require("./routes/api/createRecipe")
+  createRecipe: require("./routes/api/createRecipe"),
+  getUsers: require("./routes/api/getUsers"),
+  deleteRecipe: require("./routes/api/deleteRecipe"),
+  updateRecipe: require("./routes/api/updateRecipe")
 };
 
 console.log("\nInitialising app");
@@ -50,6 +53,9 @@ app.use("/api/confirmEmail", api.confirmEmail);
 app.use("/api/resendConfirmation", api.resendConfirmation);
 app.use("/api/getRecipes", api.getRecipes);
 app.use("/api/createRecipe", api.createRecipe);
+app.use("/api/getUsers", api.getUsers);
+app.use("/api/deleteRecipe", api.deleteRecipe);
+app.use("/api/updateRecipe", api.updateRecipe);
 
 app.use("*", routes);
 

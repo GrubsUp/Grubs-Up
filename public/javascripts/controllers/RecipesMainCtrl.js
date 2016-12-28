@@ -2,7 +2,9 @@ angular.module("grubsup.controllers").
   controller("RecipesMainCtrl", [
     "$scope",
     "api",
-    function ($scope, api) {
+    "$window",
+    "$location",
+    function ($scope, api, $window, $location) {
       $scope.menu = {
         items: [
           {name: "Overview"},
@@ -15,21 +17,29 @@ angular.module("grubsup.controllers").
       api.getUserInfo(
         function (user){
           $scope.user = user;
-          api.getRecipes(
-            user.recipes,
+          api.get("Recipes", user.recipes,
             function (recipes) {
               $scope.recipes = recipes;
+              if ($scope.recipesShown >= $scope.recipes.length) {
+                $(".loadMore").hide();
+              }
             }
           );
         }
       );
-      
+
       $scope.recipesShown = 25;
       $scope.loadMore = function () {
         $scope.recipesShown += 25;
-        if(recipesShown >= recipes.length){
+        if($scope.recipesShown >= $scope.recipes.length){
           $(".loadMore").hide();
         }
       }
+
+      $scope.openRecipe = function (recipeId) {
+        $window.open('/recipes/view/' + recipeId, "_self");
+      };
+
+      $scope.queryString = $location.search();
     }
   ]);

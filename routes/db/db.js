@@ -39,6 +39,21 @@ module.exports = {
 
     });
   },
+  delete: function (model, query) {
+    return new Promise(function (resolve, reject) {
+      console.log("\nUpdating the db");
+      var updatedDoc = model.remove(query, function (err) {
+        if(err){
+          console.log("Error:\n" + err);
+          resolve("Error");
+        }
+        else {
+          resolve("Success");
+        }
+      });
+
+    });
+  },
   models: {
     user: userModel,
     password: passwordModel,

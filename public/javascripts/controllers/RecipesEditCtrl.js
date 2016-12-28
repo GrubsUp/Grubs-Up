@@ -1,9 +1,12 @@
 angular.module("grubsup.controllers").
-  controller("RecipesNewCtrl", [
+  controller("RecipesEditCtrl", [
     "$scope",
     "api",
+    "$routeParams",
     "$http",
-    function ($scope, api, $http) {
+    "$window",
+    "$location",
+    function ($scope, api, $routeParams, $http, $window, $location) {
       $scope.form = {
         ingredients: [{
           name: "",
@@ -40,12 +43,27 @@ angular.module("grubsup.controllers").
       api.getUserInfo(
         function (user){
           $scope.user = user;
+          api.get("Recipes", [$routeParams.recipeId], function (recipe) {
+            if($scope.user["_id"] == recipe[0].author){
+              $scope.form = recipe[0];
+            }
+            else{
+              $window.open("/recipes", "_self");
+            }
+          });
         }
       );
 
       $(".submit").click(function () {
-        $http.post("/api/createRecipe", $scope.form).then(function (res) {
-          $window.open("/recipes", "_self");
+        $http.post("/api/updateRecipe", {
+          recipe: $scope.form
+        }).then(function (result) {
+          if(result.data.valid == false){
+            $location.url("login?tokenExp=1&redirectTo=" +  $location.path());
+          }
+          else{
+            $window.open("/recipes", "_self");
+          }
         });
       });
     }
