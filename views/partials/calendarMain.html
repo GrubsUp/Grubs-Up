@@ -1,0 +1,56 @@
+<div ng-include src="'includes/header'"></div>
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="content" ng-show="user">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+              <th>Sun</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="week in [1,2,3,4,5]">
+              <td>
+                <h3>Date</h3>
+                <div class="container">
+                  <div class="row">
+                    Breakfast
+                  </div>
+                  <div class="row">
+                    Lunch
+                  </div>
+                  <div class="row">
+                    Dinner
+                  </div>
+                </div>
+              </td>
+              <td ng-repeat="day in [1,2,3,4,5,6,7]">
+                <h3>{{($index+1)+(7*($parent.$index))}}</h3>
+                <div class="container">
+                  <div class="row">
+                    Cereal
+                  </div>
+                  <div class="row">
+                    Eating Out
+                  </div>
+                  <div class="row">
+                    Pizza
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

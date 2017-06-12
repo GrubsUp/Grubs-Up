@@ -7,7 +7,7 @@ angular.module("grubsup.controllers").
     function ($scope, $location, $window, api) {
       api.getUserInfo(
         function (user){
-          if(user != "notLoggedIn"){
+          if(user != "NotLoggedIn"){
             $location.url("/overview");
           }
         }, false

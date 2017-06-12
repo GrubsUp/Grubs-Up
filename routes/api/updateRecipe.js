@@ -18,7 +18,8 @@ router.post("/", function (req, res) {
           title: newRecipe.title,
           description: newRecipe.description,
           ingredients: newRecipe.ingredients,
-          instructions: newRecipe.instructions
+          instructions: newRecipe.instructions,
+          public: newRecipe.public
         }).then(function (updateResults){
           res.json({
             editted: true

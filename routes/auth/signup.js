@@ -77,7 +77,6 @@ router.post("/",function (req, res){
 			email: form.email,
 			confirmedEmail: false,
 			recipes: [],
-			shoppingList: [],
 			pfp: "images/default-profile-picture.png"
 		}).then(function (saveResults){
 			// creates salt

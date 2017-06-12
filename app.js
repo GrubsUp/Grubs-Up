@@ -17,15 +17,17 @@ var auth = {
   authenticate: require("./routes/auth/authenticate"),
   signup: require("./routes/auth/signup")
 };
+
 var api = {
   user: require("./routes/api/user"),
+  getUsers: require("./routes/api/getUsers"),
   confirmEmail: require("./routes/api/confirmEmail"),
   resendConfirmation: require("./routes/api/resendConfirmation"),
   getRecipes: require("./routes/api/getRecipes"),
   createRecipe: require("./routes/api/createRecipe"),
-  getUsers: require("./routes/api/getUsers"),
   deleteRecipe: require("./routes/api/deleteRecipe"),
-  updateRecipe: require("./routes/api/updateRecipe")
+  updateRecipe: require("./routes/api/updateRecipe"),
+  getCalendar: require("./routes/api/getCalendar")
 };
 
 console.log("\nInitialising app");
@@ -49,13 +51,14 @@ app.use("/auth/authenticate", auth.authenticate);
 app.use("/auth/signup", auth.signup);
 
 app.use("/api/user", api.user);
+app.use("/api/getUsers", api.getUsers);
 app.use("/api/confirmEmail", api.confirmEmail);
 app.use("/api/resendConfirmation", api.resendConfirmation);
 app.use("/api/getRecipes", api.getRecipes);
 app.use("/api/createRecipe", api.createRecipe);
-app.use("/api/getUsers", api.getUsers);
 app.use("/api/deleteRecipe", api.deleteRecipe);
 app.use("/api/updateRecipe", api.updateRecipe);
+app.use("/api/getCalendar", api.getCalendar);
 
 app.use("*", routes);
 

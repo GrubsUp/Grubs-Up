@@ -4,11 +4,14 @@
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <a class="btn btn-primary" href="/recipes">Back to Recipes</a>
-      <br>
-      <br>
-      <h2>New Recipe</h2>
-      <br>
       <form>
+        <br>
+        <br>
+        <h2>New Recipe</h2>
+        <br>
+        <input type="checkbox" ng-model="form.public"> Public
+        <br>
+        <br>
         <fieldset class="form-group">
           <label class="form-control-label">Title</label>
           <input type="text" class="form-control" name="title" placeholder="Title" ng-model="form.title" required/>
@@ -45,6 +48,7 @@
           <hr>
         </fieldset>
         <button type="button" class="btn btn-primary btn-block newInstruction">New Instruction</button>
+        <br>
         <br>
         <button class="btn btn-primary btn-block submit">Save</button>
       </form>

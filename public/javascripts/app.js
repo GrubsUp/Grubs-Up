@@ -66,6 +66,12 @@ angular.module("grubsup", [
         templateUrl:"/partials/recipesNew",
         controller: "RecipesEditCtrl"
       }
+    ).when(
+      "/calendar",
+      {
+        templateUrl:"/partials/calendarMain",
+        controller: "CalendarMainCtrl"
+      }
     );
 
     $locationProvider.html5Mode(true);

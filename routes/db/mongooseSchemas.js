@@ -5,13 +5,6 @@ module.exports = {
     email: String,
     recipes: [String],
     recipesPublic: [String],
-    shoppingList: [{
-      name: String,
-      amount: Number,
-      measurement: String,
-      done: Boolean,
-      reminder: Date
-    }],
     pfp: String,
     verified: Boolean,
     confirmedEmail: Boolean
@@ -33,5 +26,12 @@ module.exports = {
     instructions: [String],
     coverPhoto: String,
     public: Boolean
-  }
+  },
+  calendar: [
+    {
+      time: Number,
+      userId: String,
+      recipeId: String
+    }
+  ]
 };

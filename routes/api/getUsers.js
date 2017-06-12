@@ -11,9 +11,7 @@ router.post("/", function (req, res) {
   var userIds = req.body;
 
   Promise.map(userIds, function (userId) {
-    console.log(userId);
     return db.query(db.models.user, {_id: userId}).then(function (queryResults) {
-      console.log(queryResults[0]);
       return {
         name: queryResults[0].name,
         recipes: queryResults[0].recipes,

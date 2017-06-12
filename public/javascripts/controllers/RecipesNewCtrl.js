@@ -3,8 +3,10 @@ angular.module("grubsup.controllers").
     "$scope",
     "api",
     "$http",
-    function ($scope, api, $http) {
+    "$window",
+    function ($scope, api, $http, $window) {
       $scope.form = {
+        public: false,
         ingredients: [{
           name: "",
           amount: "",

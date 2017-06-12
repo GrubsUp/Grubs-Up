@@ -1,5 +1,5 @@
 <div ng-include src="'includes/header'"></div>
-<div class="modal fade delete-recipe-modal" tabindex="-1" role="dialog">
+<div class="modal fade delete-recipe-modal" tabindex="-1">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
@@ -13,7 +13,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger deleteRecipeModal">Delete</button>
+        <button type="button" class="btn btn-danger deleteRecipe">Delete</button>
       </div>
     </div>
   </div>
@@ -25,25 +25,30 @@
       <a class="btn btn-primary" href="/recipes">Back to Recipes</a>
       <br>
       <br>
-      <h2 class="pull-left">{{recipe.title}}</h2>
-      <br>
-      <br>
-      <h4>By <a href="/users/{{recipe.author}}">{{recipe.author}}</a></h4>
-      <br>
-      <p class="lead">
-        {{recipe.description}}
-      </p>
-      <h3>Ingredients</h3>
-      <p ng-repeat="ingredient in recipe.ingredients">
-        <b>{{ingredient.name}}</b> - {{ingredient.amount}} {{ingredient.measurement}}
-      </p>
-      <h3>Instructions</h3>
-      <p ng-repeat="instruction in recipe.instructions">
-        {{$index+1}}: {{instruction}}
-      </p>
-      <a class="btn btn-secondary editRecipe" href="/recipes/edit/{{recipe._id}}">Edit Recipe</a>
-      <button class="btn btn-danger deleteRecipe" data-toggle="modal" data-target=".delete-recipe-modal">Delete Recipe</button>
-      <br>
+      <p class="recipePrivate" style="display: none;">This recipe is private.</p>
+      <p class="recipeNotFound" style="display: none;">The recipe could not be found.</p>
+      <div class="recipeInfo">
+        <h2 class="pull-left">{{recipe.title}}</h2>
+        <br>
+        <br>
+        <h4>By <a href="/users/{{recipe.author}}">{{recipe.author}}</a></h4>
+        <br>
+        <p class="lead">
+          {{recipe.description}}
+        </p>
+        <h3>Ingredients</h3>
+        <p ng-repeat="ingredient in recipe.ingredients">
+          <b>{{ingredient.name}}</b> - {{ingredient.amount}} {{ingredient.measurement}}
+        </p>
+        <h3>Instructions</h3>
+        <p ng-repeat="instruction in recipe.instructions">
+          {{$index+1}}: {{instruction}}
+        </p>
+        <a class="btn btn-secondary editRecipe" href="/recipes/edit/{{recipe._id}}">Edit Recipe</a>
+        <button class="btn btn-danger" data-toggle="modal" data-target=".delete-recipe-modal">Delete Recipe</button>
+        <br>
+        <br>
+      </div>
     </div>
   </div>
 </div>

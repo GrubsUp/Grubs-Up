@@ -4,15 +4,15 @@ var path = require("path");
 var db = require("./../db/db");
 var jwt = require('jsonwebtoken');
 var config = require("./../../config");
-var token = require("./../auth/checkToken");
+var Promise = require("bluebird");
 
 router.post("/", function (req, res) {
   console.log("\nReceived POST request on " + req.originalUrl);
-
+  
   token.check(req.cookies["access-token"]).then(function (decodedToken) {
     if(decodedToken.valid){
       new Promise(function (resolve, reject) {
-      	resolve(req.body);
+        resolve(req.body);
       })
       .then(function (recipe) {
         return db.save(db.models.recipe, {
@@ -21,7 +21,7 @@ router.post("/", function (req, res) {
           ingredients: recipe.ingredients,
           instructions: recipe.instructions,
           author: decodedToken.userId,
-          public: recipe.public
+          public: true
         }).then(function (saveResults) {
           return saveResults;
         });
