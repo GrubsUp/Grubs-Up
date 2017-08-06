@@ -19,20 +19,6 @@
           </thead>
           <tbody>
             <tr ng-repeat="week in [1,2,3,4,5]">
-              <td>
-                <h3>Date</h3>
-                <div class="container">
-                  <div class="row">
-                    Breakfast
-                  </div>
-                  <div class="row">
-                    Lunch
-                  </div>
-                  <div class="row">
-                    Dinner
-                  </div>
-                </div>
-              </td>
               <td ng-repeat="day in [1,2,3,4,5,6,7]">
                 <h3>{{($index+1)+(7*($parent.$index))}}</h3>
                 <div class="container">

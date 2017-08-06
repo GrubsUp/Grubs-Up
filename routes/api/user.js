@@ -13,16 +13,18 @@ router.get("/", function (req, res) {
       notLoggedIn: true
     });
   }
-  token.check(req.cookies["access-token"]).then(function (decodedToken) {
-    if(decodedToken.valid){
-      db.query(db.models.user, {_id: decodedToken.userId}).then(function (queryResults) {
-        res.json(queryResults[0]);
-      });
-    }
-    else{
-      res.json(decodedToken);
-    }
-  });
+  else {
+    token.check(req.cookies["access-token"]).then(function (decodedToken) {
+      if(decodedToken.valid){
+        db.query(db.models.user, {_id: decodedToken.userId}).then(function (queryResults) {
+          res.json(queryResults[0]);
+        });
+      }
+      else{
+        res.json(decodedToken);
+      }
+    });
+  }
 });
 
 module.exports = router;

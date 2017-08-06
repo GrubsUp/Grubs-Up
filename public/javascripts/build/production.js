@@ -534,9 +534,7 @@ angular.module("grubsup.controllers").
       };
       api.getUserInfo(
         function (result){
-          if (result != "NotLoggedIn") {
-            $scope.user = result;
-          }
+          $scope.user = result;
           api.get("Recipes", [$routeParams.recipeId], function (recipe) {
             $scope.recipe = recipe[0];
             if ($scope.user != "NotLoggedIn" && $scope.recipe.author == $scope.user._id) {

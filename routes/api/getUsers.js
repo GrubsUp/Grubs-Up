@@ -8,7 +8,7 @@ var Promise = require("bluebird");
 
 router.post("/", function (req, res) {
   console.log("\nReceived POST request on " + req.originalUrl);
-  var userIds = req.body;
+  var userIds = req.bod
 
   Promise.map(userIds, function (userId) {
     return db.query(db.models.user, {_id: userId}).then(function (queryResults) {
